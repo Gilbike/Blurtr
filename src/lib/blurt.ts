@@ -1,3 +1,9 @@
 import { writable } from 'svelte/store';
 
-export const blurt = writable<{ question: string; anwser: string }[]>([]);
+export type Blurts = {
+	question: string;
+	answer: string;
+	userAnswer: string;
+}[];
+
+export const blurt = writable<Blurts>([]);

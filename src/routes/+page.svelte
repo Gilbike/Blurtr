@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { blurt } from "$lib/blurt";
+	import { blurt, type Blurts } from "$lib/blurt";
 	import BlurtField from "$lib/components/BlurtField.svelte";
   import Container from "$lib/components/Container.svelte";
 
-  let fields: {question: string; anwser: string}[] = [];
+  let fields: Blurts = [];
 
   function addField() {
-    fields = [...fields, {question: "", anwser: ""}];
+    fields = [...fields, {question: "", answer: "", userAnswer: ""}];
   }
 
   function startBlurting() {
-    if (fields.length === 0 ||fields.filter(field => field.question === "" || field.anwser === "").length != 0) {
+    if (fields.length === 0 ||fields.filter(field => field.question === "" || field.answer === "").length != 0) {
       return;
     }
 
@@ -26,7 +26,7 @@
   <div class="overflow-y-auto h-full py-3">
     <div class="flex flex-col gap-2 divide-y-[1px] divide-neutral-700/25">
       {#each fields as field}
-        <BlurtField bind:question={field.question} bind:anwser={field.anwser} />
+        <BlurtField bind:question={field.question} bind:anwser={field.answer} />
       {/each}
     </div>
     <button class="bg-blue-400 mt-3 w-full py-1 text-white hover:bg-blue-500 transition" on:click={addField}>
