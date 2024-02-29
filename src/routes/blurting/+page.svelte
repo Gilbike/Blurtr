@@ -1,0 +1,37 @@
+<script lang="ts">
+	import { blurt } from "$lib/blurt";
+	import Container from "$lib/components/Container.svelte";
+	import BlurtField from "$lib/components/BlurtField.svelte";
+	import { onMount } from "svelte";
+  
+  let fields: {question: string; anwser: string}[] = [];
+  let secondsSpent = 0;
+
+  $: timeSpentFormatted = `${Math.floor(secondsSpent / 60)}:${(secondsSpent % 60).toString().padStart(2, "0")}`
+
+  blurt.subscribe((value) => {
+    fields = value;
+  }); 
+
+  onMount(() => {
+    const timer = setInterval(() => secondsSpent += 1, 1000);
+
+    return () => {
+      clearInterval(timer);
+    }
+  })
+</script>
+
+<Container>
+  <h1 class="mt-3 font-bold text-2xl">Blurt kitöltése ({timeSpentFormatted})</h1>
+  
+  <div class="overflow-y-auto h-full py-3 flex flex-col gap-2 divide-y-[1px] divide-neutral-700/25">
+    {#each fields as field}
+      <BlurtField mode="input" question={field.question} anwser="" />
+    {/each}
+  </div>
+
+  <button class="bg-blue-400 mb-3 w-full py-1 text-white hover:bg-blue-500 transition">
+    Befejezés
+  </button>
+</Container>

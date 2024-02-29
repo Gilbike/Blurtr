@@ -1,12 +1,18 @@
 <script lang="ts">
   export let question: string;
   export let anwser: string;
+
+  export let mode: "creation" | "input" = "creation";
 </script>
 
 <form class="flex flex-col gap-2">
   <div>
     <label for="question">Kérdés</label>
-    <input type="text" name="question" id="question" bind:value={question} />
+    {#if mode == "creation"}
+      <input type="text" name="question" id="question" bind:value={question} />
+    {:else}
+      <p class="text-lg font-semibold">{question}</p>
+    {/if}
   </div>
 
   <div>
