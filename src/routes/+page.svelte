@@ -18,6 +18,10 @@
     blurt.set(fields);
     goto("/blurting")
   }
+
+  function removeBlurt(index: number) {
+    fields = [...fields.slice(0, index), ...fields.slice(index + 1)]
+  }
 </script>
 
 <Container>
@@ -25,8 +29,8 @@
 
   <div class="overflow-y-auto h-full py-3">
     <div class="flex flex-col gap-2 divide-y-[1px] divide-neutral-700/25">
-      {#each fields as field}
-        <BlurtField bind:question={field.question} bind:answer={field.answer} />
+      {#each fields as field, i (i)}
+        <BlurtField bind:question={field.question} bind:answer={field.answer} on:delete={() => removeBlurt(i)} />
       {/each}
     </div>
     <button class="bg-blue-400 mt-3 w-full py-1 text-white hover:bg-blue-500 transition" on:click={addField}>

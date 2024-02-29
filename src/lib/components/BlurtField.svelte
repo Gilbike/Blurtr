@@ -1,13 +1,26 @@
 <script lang="ts">
+	import { createEventDispatcher } from "svelte";
+
   export let question: string;
   export let answer: string;
 
   export let mode: "creation" | "input" = "creation";
+
+  const dispatch = createEventDispatcher();
+
+  function deleteBlurtQuestion() {
+    dispatch("delete");
+  }
 </script>
 
-<form class="flex flex-col gap-2">
+<form class="flex flex-col gap-1">
   <div>
-    <label for="question">Kérdés</label>
+    <label for="question" class="flex flex-row gap-1 items-end justify-between mb-1">
+      Kérdés
+      <button class="deletebutton" on:click={deleteBlurtQuestion}>
+        🗑️
+      </button>
+    </label>
     {#if mode == "creation"}
 
     <input type="text" name="question" id="question" bind:value={question} autocomplete="off" />
@@ -24,7 +37,7 @@
 
 <style scoped>
   form * {
-    @apply block w-full;
+    @apply w-full;
   }
 
   label {
@@ -37,5 +50,9 @@
 
   textarea {
     @apply resize-none
+  }
+
+  .deletebutton {
+    @apply w-fit self-end p-1 bg-neutral-100 hover:bg-red-300 transition;
   }
 </style>
