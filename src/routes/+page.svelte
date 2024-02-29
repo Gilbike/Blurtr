@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
+	import { blurt } from "$lib/blurt";
 	import BlurtField from "$lib/components/BlurtField.svelte";
   import Container from "$lib/components/Container.svelte";
 
@@ -6,6 +8,15 @@
 
   function addField() {
     fields = [...fields, {question: "", anwser: ""}];
+  }
+
+  function startBlurting() {
+    if (fields.length === 0 ||fields.filter(field => field.question === "" || field.anwser === "").length != 0) {
+      return;
+    }
+
+    blurt.set(fields);
+    goto("/blurting")
   }
 </script>
 
@@ -22,4 +33,8 @@
       Új kérdés
     </button>
   </div>
+
+  <button class="bg-blue-400 mb-3 w-full py-1 text-white hover:bg-blue-500 transition" on:click={startBlurting}>
+    Kezdés
+  </button>
 </Container>
