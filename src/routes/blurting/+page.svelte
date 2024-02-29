@@ -31,7 +31,7 @@
   
   <div class="overflow-y-auto h-full py-3 flex flex-col gap-2 divide-y-[1px] divide-neutral-700/25">
     {#each fields as field, i (i)}
-      <BlurtField mode="input" question={field.question} anwser={field.userAnswer} />
+      <BlurtField mode="input" question={field.question} bind:answer={field.userAnswer} />
     {/each}
   </div>
 

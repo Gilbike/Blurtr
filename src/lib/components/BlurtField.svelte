@@ -1,6 +1,6 @@
 <script lang="ts">
   export let question: string;
-  export let anwser: string;
+  export let answer: string;
 
   export let mode: "creation" | "input" = "creation";
 </script>
@@ -17,7 +17,7 @@
 
   <div>
     <label for="anwser">Válasz</label>
-    <textarea name="anwser" id="anwser" rows="6" bind:value={anwser} />
+    <textarea name="anwser" id="anwser" rows="6" bind:value={answer} />
   </div>
 </form>
 
