@@ -3,6 +3,7 @@
 	import Container from "$lib/components/Container.svelte";
 	import BlurtField from "$lib/components/BlurtField.svelte";
 	import { onMount } from "svelte";
+	import { goto } from "$app/navigation";
   
   let fields: Blurts = [];
   let secondsSpent = 0;
@@ -23,6 +24,7 @@
 
   function submitBlurt() {
     blurt.set(fields);
+    goto(`/results?time=${secondsSpent}`);
   }
 </script>
 
@@ -35,7 +37,7 @@
     {/each}
   </div>
 
-  <button class="bg-blue-400 mb-3 w-full py-1 text-white hover:bg-blue-500 transition">
+  <button class="bg-blue-400 mb-3 w-full py-1 text-white hover:bg-blue-500 transition" on:click={submitBlurt}>
     Befejezés
   </button>
 </Container>

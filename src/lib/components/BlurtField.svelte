@@ -9,7 +9,8 @@
   <div>
     <label for="question">Kérdés</label>
     {#if mode == "creation"}
-      <input type="text" name="question" id="question" bind:value={question} autocomplete="off" />
+
+    <input type="text" name="question" id="question" bind:value={question} autocomplete="off" />
     {:else}
       <p class="text-lg font-semibold">{question}</p>
     {/if}
