@@ -1,12 +1,17 @@
+<script lang="ts">
+  export let question: string;
+  export let anwser: string;
+</script>
+
 <form class="flex flex-col gap-2">
   <div>
     <label for="question">Kérdés</label>
-    <input type="text" name="question" id="question" />
+    <input type="text" name="question" id="question" bind:value={question} />
   </div>
 
   <div>
     <label for="anwser">Válasz</label>
-    <textarea name="anwser" id="anwser" rows="6" />
+    <textarea name="anwser" id="anwser" rows="6" bind:value={anwser} />
   </div>
 </form>
 
