@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SvgIcon from "$lib/components/SvgIcon.svelte";
+  import { mdiDelete } from "@mdi/js";
 	import { createEventDispatcher } from "svelte";
 
   export let question: string;
@@ -18,7 +20,7 @@
     <label for="question" class="flex flex-row gap-1 items-end justify-between mb-1">
       Kérdés
       <button class="deletebutton" on:click={deleteBlurtQuestion}>
-        🗑️
+        <SvgIcon icon={mdiDelete} />
       </button>
     </label>
     {#if mode == "creation"}

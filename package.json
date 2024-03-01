@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@mdi/js": "^7.4.47",
 		"@tauri-apps/api": "^1.5.3"
 	}
 }
