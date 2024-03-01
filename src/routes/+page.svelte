@@ -3,6 +3,7 @@
 	import { blurt, type Blurts } from "$lib/blurt";
 	import BlurtField from "$lib/components/BlurtField.svelte";
   import Container from "$lib/components/Container.svelte";
+  import { invoke } from '@tauri-apps/api/tauri'
 
   let blurtName: string = "";
   let fields: Blurts = [];
@@ -22,6 +23,10 @@
 
   function removeBlurt(index: number) {
     fields = [...fields.slice(0, index), ...fields.slice(index + 1)]
+  }
+
+  function exportBlurt() {
+    invoke('export_blurt');
   }
 </script>
 
@@ -44,7 +49,7 @@
       Új kérdés
     </button>
     <div class="flex flex-row gap-2">
-      <button disabled={fields.length == 0} class="bg-red-400 mt-3 w-full py-1 text-white hover:bg-red-500 transition disabled:bg-red-300/50">
+      <button disabled={fields.length == 0} class="bg-red-400 mt-3 w-full py-1 text-white hover:bg-red-500 transition disabled:bg-red-300/50" on:click={exportBlurt}>
         Exportálás
       </button>
       <button class="bg-emerald-400 mt-3 w-full py-1 text-white hover:bg-emerald-500 transition">
