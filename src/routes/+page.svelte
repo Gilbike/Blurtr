@@ -26,7 +26,14 @@
   }
 
   function exportBlurt() {
-    invoke('export_blurt');
+    const exportData = {
+      title: blurtName,
+      fields: fields.map((obj) => {
+        const { ["userAnswer"]: _, ...rest } = obj;
+        return rest;
+      })
+    };
+    invoke('export_blurt', { params: JSON.stringify(exportData) });
   }
 </script>
 
