@@ -6,11 +6,7 @@
     
   const timeSpent = parseInt($page.url.searchParams.get('time') || "0");
 
-  let fields: Blurts = [];
-
-  blurt.subscribe((value) => {
-    fields = value;
-  });
+  let fields: Blurts = $blurt;
 </script>
 
 <Container>

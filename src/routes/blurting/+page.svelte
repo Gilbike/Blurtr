@@ -5,14 +5,10 @@
 	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
   
-  let fields: Blurts = [];
+  let fields: Blurts = $blurt;
   let secondsSpent = 0;
 
   $: timeSpentFormatted = `${Math.floor(secondsSpent / 60)}:${(secondsSpent % 60).toString().padStart(2, "0")}`
-
-  blurt.subscribe((value) => {
-    fields = value;
-  }); 
 
   onMount(() => {
     const timer = setInterval(() => secondsSpent += 1, 1000);

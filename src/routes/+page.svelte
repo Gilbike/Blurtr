@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { page } from "$app/stores";
 	import { blurt, type Blurts } from "$lib/blurt";
 	import BlurtField from "$lib/components/BlurtField.svelte";
-  import Container from "$lib/components/Container.svelte";
-  import { invoke } from '@tauri-apps/api/tauri'
+	import Container from "$lib/components/Container.svelte";
+	import { invoke } from '@tauri-apps/api/tauri';
 	import { onMount } from "svelte";
-  import {page} from "$app/stores";
 
   let blurtName: string = "";
   let fields: Blurts = [];
