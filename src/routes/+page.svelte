@@ -4,6 +4,8 @@
 	import BlurtField from "$lib/components/BlurtField.svelte";
   import Container from "$lib/components/Container.svelte";
   import { invoke } from '@tauri-apps/api/tauri'
+	import { onMount } from "svelte";
+  import {page} from "$app/stores";
 
   let blurtName: string = "";
   let fields: Blurts = [];
@@ -35,6 +37,12 @@
     };
     invoke('export_blurt', { params: JSON.stringify(exportData) });
   }
+
+  onMount(() => {
+    if ($page.url.searchParams.get("refresh") !== "true") return;
+
+    fields = $blurt;
+  });
 </script>
 
 <Container>
@@ -59,9 +67,9 @@
       <button disabled={fields.length == 0} class="bg-red-400 mt-3 w-full py-1 text-white hover:bg-red-500 transition disabled:bg-red-300/50" on:click={exportBlurt}>
         Exportálás
       </button>
-      <button class="bg-emerald-400 mt-3 w-full py-1 text-white hover:bg-emerald-500 transition">
+      <a href="/import" class="text-center bg-emerald-400 mt-3 w-full py-1 text-white hover:bg-emerald-500 transition">
         Importálás
-      </button>
+      </a>
     </div>
   </div>
 
