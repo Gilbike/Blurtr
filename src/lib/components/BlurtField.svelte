@@ -15,7 +15,7 @@
   }
 </script>
 
-<form class="flex flex-col gap-1">
+<div class="flex flex-col gap-1">
   <div>
     <label for="question" class="flex flex-row gap-1 items-end justify-between mb-1">
       Kérdés
@@ -35,10 +35,10 @@
     <label for="anwser">Válasz</label>
     <textarea name="anwser" id="anwser" rows="6" bind:value={answer} />
   </div>
-</form>
+</div>
 
 <style scoped>
-  form * {
+  div * {
     @apply w-full;
   }
 
